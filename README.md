@@ -13,11 +13,22 @@ This repo will demonstrate how to:
 
 Before running this app, you need to create a Supabase project and copy [your credentials](https://supabase.io/docs/guides/with-react-native#get-the-api-keys) to `src/config.ts`.
 
+You'll also need to update the types script in package.json with your Supabase URL and anon key to generate Typescript types for your database tables.
+
+```
+  "scripts": {
+    ...
+    "types": "npx openapi-typescript https:[YOUR_SUPABASE_URL]/rest/v1/?apikey=[YOUR_SUPABASE_ANON_KEY] --output src/types/supabase.ts"
+  }
+```
+
 You can run this app on iOS, Android.
 
 To run this application, simply run the following for iOS or Android
 
 ```bash
+npm install
+npm run types
 npx react-native run-android
 npx react-native run-ios
 ```
