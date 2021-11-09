@@ -7,7 +7,7 @@ This repo will demonstrate how to:
 - sign users in with Supabase Auth using [magic link](https://supabase.io/docs/reference/dart/auth-signin#sign-in-with-magic-link)
 - store and retrieve data with [Supabase database](https://supabase.io/docs/guides/database)
 - store image files in [Supabase storage](https://supabase.io/docs/guides/storage)
-- generate typescript interfaces for your tables
+- generate Typescript interfaces for your tables
 
 ## Getting Started
 
