@@ -7,7 +7,6 @@ import {
   VStack,
   useToast,
   KeyboardAvoidingView,
-  ScrollView,
 } from 'native-base';
 import {Image, Platform} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
@@ -15,7 +14,6 @@ import {HomeStackParamList} from '.';
 import {useAuth} from '../auth/AuthContext';
 import Layout from '../../components/Layout';
 import ImagePicker, {ImageOrVideo} from 'react-native-image-crop-picker';
-import {decode} from 'base64-arraybuffer';
 import supabase from '../../services/supabase';
 import {Profile} from '../../types/Profile';
 
@@ -83,13 +81,25 @@ export default function Account({route}: AccountProps) {
   }
 
   function uploadImage(image: ImageOrVideo) {
+    console.log({image});
     let pathSegments = image.path?.split('/');
     if (pathSegments) {
       let filename = pathSegments[pathSegments?.length - 1];
+
+      const data = new FormData();
+      data.append('file', {
+        name: filename,
+        type: image.mime,
+        uri:
+          Platform.OS === 'ios'
+            ? image.path.replace('file://', '')
+            : image.path,
+      });
+
       setUploading(true);
       supabase.storage
         .from('avatars')
-        .upload(filename, decode((image as any).data))
+        .upload(filename, data)
         .then(res => {
           let result = supabase.storage.from('avatars').getPublicUrl(filename);
           result.publicURL && onUpload(result.publicURL);
