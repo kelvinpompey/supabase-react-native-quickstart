@@ -7,5 +7,4 @@ let client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
   detectSessionInUrl: false,
 });
 
-(global as any).supabase = client;
 export default client;

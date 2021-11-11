@@ -12,7 +12,6 @@ export default function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Account" component={Account}></Stack.Screen>
-      <Stack.Screen name="login-callback/" component={Account}></Stack.Screen>
     </Stack.Navigator>
   );
 }
