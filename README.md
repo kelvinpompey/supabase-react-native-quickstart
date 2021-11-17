@@ -30,6 +30,7 @@ To run this application, simply run the following for iOS or Android
 npm install
 npm run types
 npx react-native run-android
+cd ios && pod install
 npx react-native run-ios
 ```
 
